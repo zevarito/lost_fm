@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'net/http'
-require 'xmlsimple'
 require 'hashie'
+require 'json'
 
 class LastFM
   VERSION = '0.0.1'

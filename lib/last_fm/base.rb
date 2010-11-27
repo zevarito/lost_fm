@@ -22,8 +22,9 @@ class LastFM
       url       = URI.parse(uri)
       req       = Net::HTTP::Get.new(url.path+"?"+url.query)
       response  = Net::HTTP.start(url.host, url.port) {|http| http.request(req) }
-      result    = XmlSimple.xml_in(response.body, 'keeproot' => false, 'forcearray' => false)
-      Hashie::Mash.new result
+
+      # avoid parser crash with a string containing a new line only
+      Hashie::Mash.new JSON.parse(response.body.gsub(/"\n"/, "\"\""))
     rescue Exception => ex
       puts "Request failed for #{uri}. Exception: #{ex}"
     end
@@ -31,7 +32,7 @@ class LastFM
 
   def last_fm_query method, params
     klass = self.class.to_s.gsub("LastFM::","").downcase
-    "#{api_path}method=#{klass}.#{method}&#{params.to_query_params}"
+    "#{api_path}method=#{klass}.#{method}&#{params.to_query_params}&format=json"
   end
 
   def artist;      @artist           ||= Artist.new      end
@@ -51,7 +52,13 @@ class Artist < LastFM
   def initialize; end
 
   def get(uri)
-    result = super(uri)
-    result.results.artistmatches.artist.is_a?(Array) ? result.results.artistmatches.artist : [result.results.artistmatches.artist].compact
+    results = super(uri).results
+    if results.artistmatches.is_a?(String)
+      []
+    elsif results.artistmatches.artist.is_a?(Array)
+      results.artistmatches.artist
+    else
+      [results.artistmatches.artist].compact
+    end
   end
 end
