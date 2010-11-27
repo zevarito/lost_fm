@@ -62,3 +62,14 @@ class Artist < LastFM
     end
   end
 end
+
+class Album       < LastFM; def initialize; end end
+class Event       < LastFM; def initialize; end end
+class Geo         < LastFM; def initialize; end end
+class Group       < LastFM; def initialize; end end
+class Library     < LastFM; def initialize; end end
+class Playlist    < LastFM; def initialize; end end
+class Tag         < LastFM; def initialize; end end
+class Tastometer  < LastFM; def initialize; end end
+class Track       < LastFM; def initialize; end end
+class User        < LastFM; def initialize; end end
