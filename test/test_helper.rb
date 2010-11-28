@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'ruby-debug'
 require 'contest'
-require 'lib/last_fm'
+require 'lib/lost_fm'
 require 'fakeweb'
 
 FakeWeb.allow_net_connect = false

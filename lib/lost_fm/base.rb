@@ -1,6 +1,6 @@
-class LastFM
-  include LastFM::Meta
-  include LastFM::Error
+class LostFM
+  include LostFM::Meta
+  include LostFM::Error
 
   def initialize(key = nil, secret = nil)
     if key.nil? || secret.nil?
@@ -32,7 +32,7 @@ class LastFM
   end
 
   def last_fm_query method, params
-    klass = self.class.to_s.gsub("LastFM::","").downcase
+    klass = self.class.to_s.gsub("LostFM::","").downcase
     "#{api_path}method=#{klass}.#{method}&#{params.to_query_params}&format=json"
   end
 
@@ -49,7 +49,7 @@ class LastFM
   def user;        @user             ||= User.new        end
 end
 
-class Artist < LastFM
+class Artist < LostFM
   def initialize; end
 
   def get(uri)
@@ -64,13 +64,13 @@ class Artist < LastFM
   end
 end
 
-class Album       < LastFM; def initialize; end end
-class Event       < LastFM; def initialize; end end
-class Geo         < LastFM; def initialize; end end
-class Group       < LastFM; def initialize; end end
-class Library     < LastFM; def initialize; end end
-class Playlist    < LastFM; def initialize; end end
-class Tag         < LastFM; def initialize; end end
-class Tastometer  < LastFM; def initialize; end end
-class Track       < LastFM; def initialize; end end
-class User        < LastFM; def initialize; end end
+class Album       < LostFM; def initialize; end end
+class Event       < LostFM; def initialize; end end
+class Geo         < LostFM; def initialize; end end
+class Group       < LostFM; def initialize; end end
+class Library     < LostFM; def initialize; end end
+class Playlist    < LostFM; def initialize; end end
+class Tag         < LostFM; def initialize; end end
+class Tastometer  < LostFM; def initialize; end end
+class Track       < LostFM; def initialize; end end
+class User        < LostFM; def initialize; end end

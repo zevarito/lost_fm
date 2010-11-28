@@ -4,7 +4,7 @@ class ErrorHandlingUnit < Test::Unit::TestCase
 
   context "Error Handling" do
     def setup
-      @lfm = LastFM.new("b25b959554ed76058ac220b7b2e0a026", "434343k4j3kj4k3jk4j3kj4k3j4k34k3")
+      @lfm = LostFM.new("b25b959554ed76058ac220b7b2e0a026", "434343k4j3kj4k3jk4j3kj4k3j4k34k3")
     end
 
     test "Unknown Error Code" do
@@ -12,8 +12,8 @@ class ErrorHandlingUnit < Test::Unit::TestCase
       body = %( {"error":622,"message":"This Exception doesn't exist"} )
       FakeWeb.register_uri(:get, url, :body => body)
 
-      @lfm = LastFM.new("b25b959554ed76058ac220b7b2e0a026", "434343k4j3kj4k3jk4j3kj4k3j4k34k3")
-      assert_raise LastFM::Exception do
+      @lfm = LostFM.new("b25b959554ed76058ac220b7b2e0a026", "434343k4j3kj4k3jk4j3kj4k3j4k34k3")
+      assert_raise LostFM::Exception do
         @lfm.artist.search(:limit => 2)
       end
     end
@@ -35,8 +35,8 @@ class ErrorHandlingUnit < Test::Unit::TestCase
       body = %( {"error":6,"message":"You must supply either an artist name or a musicbrainz id"} )
       FakeWeb.register_uri(:get, url, :body => body)
 
-      @lfm = LastFM.new("b25b959554ed76058ac220b7b2e0a026", "434343k4j3kj4k3jk4j3kj4k3j4k34k3")
-      assert_raise LastFM::InvalidParameters do
+      @lfm = LostFM.new("b25b959554ed76058ac220b7b2e0a026", "434343k4j3kj4k3jk4j3kj4k3j4k34k3")
+      assert_raise LostFM::InvalidParameters do
         @lfm.artist.search(:limit => 1)
       end
     end

@@ -1,4 +1,4 @@
-module LastFM::Meta
+module LostFM::Meta
   # This method handles and return most API
   # call in their default format. Override
   # as needed within each class

@@ -5,7 +5,7 @@ class ArtistsUnit < Test::Unit::TestCase
   context "Searching Authors" do
 
     def setup
-      @lfm = LastFM.new("b25b959554ed76058ac220b7b2e0a026", "434343k4j3kj4k3jk4j3kj4k3j4k34k3")
+      @lfm = LostFM.new("b25b959554ed76058ac220b7b2e0a026", "434343k4j3kj4k3jk4j3kj4k3j4k34k3")
 
       # @lfm.artist.search(:artist => 'radiohead', :limit => 1)
       url = "http://ws.audioscrobbler.com/2.0/?api_key=b25b959554ed76058ac220b7b2e0a026&method=artist.search&artist=radiohead&limit=1&format=json"

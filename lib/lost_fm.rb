@@ -3,13 +3,13 @@ require 'net/http'
 require 'hashie'
 require 'json'
 
-class LastFM
+class LostFM
   VERSION = '0.0.1'
 end
 
-require File.dirname(__FILE__) + '/last_fm/error'
-require File.dirname(__FILE__) + '/last_fm/meta'
-require File.dirname(__FILE__) + '/last_fm/base'
+require File.dirname(__FILE__) + '/lost_fm/error'
+require File.dirname(__FILE__) + '/lost_fm/meta'
+require File.dirname(__FILE__) + '/lost_fm/base'
 
 # File merb/core_ext/hash.rb, line 87
 class Hash

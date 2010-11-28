@@ -4,7 +4,7 @@ class BaseUnit < Test::Unit::TestCase
 
   context "Initializing lib" do
     test "Initialize with key and secrect" do
-      assert_kind_of LastFM, LastFM.new('aaaaa', 'bbbbb')
+      assert_kind_of LostFM, LostFM.new('aaaaa', 'bbbbb')
     end
   end
 end

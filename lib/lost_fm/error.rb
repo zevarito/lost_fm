@@ -1,6 +1,6 @@
-module LastFM::Error
+module LostFM::Error
 
-  class LastFM::Exception < Exception; end;
+  class LostFM::Exception < Exception; end;
 
   LASTFM_API_ERRORS = {
     "2"   => "InvalidService",
@@ -21,7 +21,7 @@ module LastFM::Error
   end
 
   def self.define_error_classes
-    LASTFM_API_ERRORS.each {|_, error_class| eval "class #{error_class} < LastFM::Exception; end;"}
+    LASTFM_API_ERRORS.each {|_, error_class| eval "class #{error_class} < LostFM::Exception; end;"}
   end
 
   def check_for_errors!(result)
@@ -29,7 +29,7 @@ module LastFM::Error
   end
 
   def error_class_for(result)
-    LASTFM_API_ERRORS.keys.include?(result.error.to_s) ? "LastFM::" + LASTFM_API_ERRORS[result.error.to_s] : "LastFM::Exception"
+    LASTFM_API_ERRORS.keys.include?(result.error.to_s) ? "LostFM::" + LASTFM_API_ERRORS[result.error.to_s] : "LostFM::Exception"
   end
 
   def error_message_for(result)
