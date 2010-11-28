@@ -49,7 +49,7 @@ class LostFM
   def user;        @user             ||= User.new        end
 end
 
-class Artist < LostFM
+class LostFM::Artist < LostFM
   def initialize; end
 
   def get(uri)
@@ -64,13 +64,13 @@ class Artist < LostFM
   end
 end
 
-class Album       < LostFM; def initialize; end end
-class Event       < LostFM; def initialize; end end
-class Geo         < LostFM; def initialize; end end
-class Group       < LostFM; def initialize; end end
-class Library     < LostFM; def initialize; end end
-class Playlist    < LostFM; def initialize; end end
-class Tag         < LostFM; def initialize; end end
-class Tastometer  < LostFM; def initialize; end end
-class Track       < LostFM; def initialize; end end
-class User        < LostFM; def initialize; end end
+class LostFM::Album       < LostFM; def initialize; end end
+class LostFM::Event       < LostFM; def initialize; end end
+class LostFM::Geo         < LostFM; def initialize; end end
+class LostFM::Group       < LostFM; def initialize; end end
+class LostFM::Library     < LostFM; def initialize; end end
+class LostFM::Playlist    < LostFM; def initialize; end end
+class LostFM::Tag         < LostFM; def initialize; end end
+class LostFM::Tastometer  < LostFM; def initialize; end end
+class LostFM::Track       < LostFM; def initialize; end end
+class LostFM::User        < LostFM; def initialize; end end
