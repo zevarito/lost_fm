@@ -7,6 +7,7 @@ class LastFM
   VERSION = '0.0.1'
 end
 
+require File.dirname(__FILE__) + '/last_fm/error'
 require File.dirname(__FILE__) + '/last_fm/meta'
 require File.dirname(__FILE__) + '/last_fm/base'
 
