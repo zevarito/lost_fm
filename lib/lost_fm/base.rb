@@ -64,6 +64,21 @@ class LostFM::Artist < LostFM
   end
 end
 
+class LostFM::Track < LostFM
+  def initialize; end
+
+  def get(uri)
+    results = super(uri).results
+    if results.trackmatches.is_a?(String)
+      []
+    elsif results.trackmatches.track.is_a?(Array)
+      results.trackmatches.track
+    else
+      [results.trackmatches.track].compact
+    end
+  end
+end
+
 class LostFM::Album       < LostFM; def initialize; end end
 class LostFM::Event       < LostFM; def initialize; end end
 class LostFM::Geo         < LostFM; def initialize; end end
@@ -72,5 +87,4 @@ class LostFM::Library     < LostFM; def initialize; end end
 class LostFM::Playlist    < LostFM; def initialize; end end
 class LostFM::Tag         < LostFM; def initialize; end end
 class LostFM::Tastometer  < LostFM; def initialize; end end
-class LostFM::Track       < LostFM; def initialize; end end
 class LostFM::User        < LostFM; def initialize; end end
