@@ -33,7 +33,7 @@ class LostFM
 
   def last_fm_query method, params
     klass = self.class.to_s.gsub("LostFM::","").downcase
-    "#{api_path}method=#{klass}.#{method}&#{params.to_query_params}&format=json"
+    "#{api_path}method=#{klass}.#{method}&#{URI.escape(params.to_query_params)}&format=json"
   end
 
   def artist;      @artist           ||= Artist.new      end

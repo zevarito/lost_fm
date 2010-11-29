@@ -141,5 +141,18 @@ class ArtistsUnit < Test::Unit::TestCase
     test "Search for a query without results" do
       assert_equal 0, @lfm.artist.search(:artist => "dsd3i43jijffdfd", :limit => 5).size
     end
+
+    test "Request params should be url encoded" do
+      url = "http://ws.audioscrobbler.com/2.0/?api_key=b25b959554ed76058ac220b7b2e0a026&method=artist.search&artist=the%20doors&limit=1&format=json"
+      body = <<-EOT
+        {"results":{"opensearch:Query":{"#text":"","role":"request","searchTerms":"the doors","startPage":"1"},"opensearch:totalResults":"553","opensearch:startIndex":"0","opensearch:itemsPerPage":"1","artistmatches":{"artist":{"name":"The Doors","listeners":"1923612","mbid":"9efff43b-3b29-4082-824e-bc82f646f93d","url":"http:\/\/www.last.fm\/music\/The+Doors","streamable":"1","image":[{"#text":"http:\/\/userserve-ak.last.fm\/serve\/34\/18012809.jpg","size":"small"},{"#text":"http:\/\/userserve-ak.last.fm\/serve\/64\/18012809.jpg","size":"medium"},{"#text":"http:\/\/userserve-ak.last.fm\/serve\/126\/18012809.jpg","size":"large"},{"#text":"http:\/\/userserve-ak.last.fm\/serve\/252\/18012809.jpg","size":"extralarge"},{"#text":"http:\/\/userserve-ak.last.fm\/serve\/_\/18012809\/The+Doors+brodskywindow.jpg","size":"mega"}]}},"@attr":{"for":"the doors"}}}
+      EOT
+
+      FakeWeb.register_uri(:get, url, :body => body)
+
+      assert_nothing_raised URI::InvalidURIError do
+        @lfm.artist.search(:artist => "the doors", :limit => 1)
+      end
+    end
   end
 end
