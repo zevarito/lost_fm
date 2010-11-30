@@ -151,7 +151,7 @@ class ArtistsUnit < Test::Unit::TestCase
       FakeWeb.register_uri(:get, url, :body => body)
 
       assert_nothing_raised URI::InvalidURIError do
-        @lfm.artist.search(:artist => "the doors", :limit => 1)
+        @lfm.artist.search(:artist => "   the doors   ", :limit => 1)
       end
     end
   end

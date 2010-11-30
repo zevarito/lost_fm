@@ -36,7 +36,12 @@ private
     self.class.to_s.split("::").last
   end
 
+  def sanitize_params!(params)
+    params.dup.each{|k,v| params[k] = v.to_s.strip}
+  end
+
   def last_fm_query method, params
+    sanitize_params!(params)
     "#{api_path}method=#{class_name.downcase}.#{method}&#{URI.escape(params.to_query_params)}&format=json"
   end
 
