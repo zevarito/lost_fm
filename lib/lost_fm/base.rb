@@ -59,7 +59,6 @@ private
 
   def reduce_results_complexity(results)
     return results if !respond_to?(:collection)
-
     if results[collection].is_a?(String)
       []
     elsif results[collection].send(class_name.downcase.to_sym).is_a?(Array)
